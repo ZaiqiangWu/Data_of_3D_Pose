@@ -108,8 +108,8 @@ class SMPLModel():
         with open(path, 'w') as fp:
             for v in self.verts:
                 fp.write('v %f %f %f\n' % (v[0], v[1], v[2]))
-            for f in self.faces + 1:
-                fp.write('f %d %d %d\n' % (f[0], f[1], f[2]))
+            for f in self.faces:
+                fp.write('f %d %d %d\n' % (f[0]+1, f[1]+1, f[2]+1))
 
 
 
@@ -122,5 +122,7 @@ if __name__ == '__main__':
     smpl.set_params(beta=beta, pose=pose, trans=trans)
     if not os.path.exists('./OBJ'):
         os.mkdir('OBJ')
-    smpl.save_to_obj('./OBJ/smpl_np.obj')
+    #smpl.save_to_obj('./OBJ/smpl_np.obj')
+    print(type(smpl.J_regressor.todense()[1,2]))
+    #print(smpl.J)
 
