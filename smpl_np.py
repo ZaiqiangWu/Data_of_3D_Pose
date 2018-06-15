@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import os
+import torch
 
 class SMPLModel():
     def __init__(self, model_path):
@@ -123,6 +124,8 @@ if __name__ == '__main__':
     if not os.path.exists('./OBJ'):
         os.mkdir('OBJ')
     #smpl.save_to_obj('./OBJ/smpl_np.obj')
-    print(type(smpl.J_regressor.todense()[1,2]))
+
+    ma=torch.from_numpy(smpl.J_regressor.todense())
+    torch.sparse.q
     #print(smpl.J)
 
